@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { MapPin, Phone, User, LogOut, Calendar, Shield } from "lucide-react";
+import { Phone, User, LogOut, Calendar, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -16,6 +16,13 @@ const Header = () => {
   const { user, isAdmin, signOut, loading } = useAuth();
   const { unreadCount } = useAdminNotifications();
   const navigate = useNavigate();
+  const navItems = [
+    { label: "About Us", to: "/about-us" },
+    { label: "How It Works", to: "/how-it-works" },
+    { label: "Pricing", to: "/pricing" },
+    { label: "Become a Partner", to: "/become-a-partner" },
+    { label: "FAQs", to: "/faqs" },
+  ];
 
   const handleSignOut = async () => {
     await signOut();
@@ -38,17 +45,22 @@ const Header = () => {
             <span className="font-bold text-xl text-foreground">HomeServe</span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-6">
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <MapPin className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium">Dehradun, Uttarakhand</span>
-            </div>
-          </div>
+          <nav className="hidden lg:flex items-center gap-6">
+            {navItems.map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
 
           <div className="flex items-center gap-3">
-            <a href="tel:+919876543210" className="hidden sm:flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
+            <a href="tel:+919958035502" className="hidden sm:flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
               <Phone className="w-4 h-4" />
-              <span className="text-sm font-medium">+91 98765 43210</span>
+              <span className="text-sm font-medium">+91 99580 35502</span>
             </a>
 
             {loading ? (

@@ -5,6 +5,7 @@ import ServicesSection from "@/components/ServicesSection";
 import TrustSection from "@/components/TrustSection";
 import Footer from "@/components/Footer";
 import BookingModal from "@/components/BookingModal";
+import LocationFinderSection from "@/components/LocationFinderSection";
 import { useServices, Service } from "@/hooks/useServices";
 import { BOOKING_DRAFT_STORAGE_KEY } from "@/lib/marketplace";
 
@@ -49,6 +50,7 @@ const Index = () => {
         onBookNow={handleBookNow}
         onExploreServices={() => servicesRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })}
       />
+      <LocationFinderSection />
       <div ref={servicesRef}>
         <ServicesSection services={services} isLoading={isLoading} onSelectService={handleSelectService} />
       </div>
